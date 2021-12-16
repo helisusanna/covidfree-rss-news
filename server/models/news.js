@@ -11,7 +11,8 @@ let getNews = (yle_url, hs_url, il_url, is_url) => {
                         } else {
                             dataJSON.rss.channel[0].item.forEach((item) => {
                                 let yleObj;  
-                                if(!item.category[0].includes("virus")&&!item.description[0].includes("orona")&&!item.description[0].includes("rokot")&&!item.description[0].includes("Rokot")&&!item.title[0].includes("orona")&&!item.title[0].includes("rokot")){
+                                if(!item.category[0].includes("virus")&&!item.description[0].includes("orona")&&!item.description[0].includes("rokot")&&!item.description[0].includes("Rokot")
+                                &&!item.description[0].includes("artunta")&&!item.description[0].includes("covid")&&!item.title[0].includes("orona")&&!item.title[0].includes("rokot")){
                                     if (item.enclosure === undefined) {
                                         yleObj =  {
                                             "title" : item.title[0],
@@ -56,7 +57,8 @@ let getNews = (yle_url, hs_url, il_url, is_url) => {
                         } else {
                             dataJSON.rss.channel[0].item.forEach((item) => {
                                 let hsObj;
-                                if(!item.category[0].includes("virus")&&!item.description[0].includes("orona")&&!item.description[0].includes("rokot")&&!item.description[0].includes("Rokot")&&!item.title[0].includes("orona")&&!item.title[0].includes("rokot")){
+                                if(!item.category[0].includes("virus")&&!item.description[0].includes("orona")&&!item.description[0].includes("rokot")&&!item.description[0].includes("Rokot")
+                                &&!item.description[0].includes("artunta")&&!item.description[0].includes("covid")&&!item.title[0].includes("orona")&&!item.title[0].includes("rokot")){
                                     if (item.enclosure === undefined) {
                                         hsObj =  {
                                             "title" : item.title[0],
@@ -101,7 +103,8 @@ let getNews = (yle_url, hs_url, il_url, is_url) => {
                         } else {
                             dataJSON.rss.channel[0].item.forEach((item) => {
                                 let ilObj;
-                                if(!item.category[0].includes("virus")&&!item.description[0].includes("orona")&&!item.description[0].includes("rokot")&&!item.description[0].includes("Rokot")&&!item.title[0].includes("orona")&&!item.title[0].includes("rokot")){
+                                if(!item.category[0].includes("virus")&&!item.description[0].includes("orona")&&!item.description[0].includes("rokot")&&!item.description[0].includes("Rokot")
+                                &&!item.description[0].includes("artunta")&&!item.description[0].includes("covid")&&!item.title[0].includes("orona")&&!item.title[0].includes("rokot")){
                                     if (item.enclosure === undefined) {
                                         ilObj =  {
                                             "title" : item.title[0],
@@ -146,7 +149,8 @@ let getNews = (yle_url, hs_url, il_url, is_url) => {
                         } else {
                             dataJSON.rss.channel[0].item.forEach((item) => {
                                 let isObj;
-                                if(!item.category[0].includes("virus")&&!item.description[0].includes("orona")&&!item.description[0].includes("rokot")&&!item.description[0].includes("Rokot")&&!item.title[0].includes("orona")&&!item.title[0].includes("rokot")){
+                                if(!item.category[0].includes("virus")&&!item.description[0].includes("orona")&&!item.description[0].includes("rokot")&&!item.description[0].includes("Rokot")
+                                &&!item.description[0].includes("artunta")&&!item.description[0].includes("covid")&&!item.title[0].includes("orona")&&!item.title[0].includes("rokot")){
                                     if (item.enclosure === undefined) {
                                         isObj =  {
                                             "title" : item.title[0],

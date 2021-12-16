@@ -24,6 +24,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: "2%"
   },
+  hideSm:{
+      [theme.breakpoints.down('sm')]: {
+        display: "none",
+    },
+  },
+  hideMd:{
+    [theme.breakpoints.up('sm')]: {
+      display: "none",
+  },
+}
 }));
 
 function News(props) {
@@ -105,10 +115,10 @@ function News(props) {
                         </IconButton>
                         <Typography variant="button" sx={{ flexGrow: 1 }}>covid-19-free</Typography>
                     </Box>
-                    <Box sx={{ flexGrow: 0 }}>
+                    <Box className={classes.hideSm} sx={{ flexGrow: 0 }}>
                         {(categ)
                         ?<Tooltip title="Kaikki kategoriat">
-                            <IconButton color="inherit" sx={{ p: 0, mr: 4 }}>
+                            <IconButton color="inherit" className={classes.filter}>
                                 <FilterAltOffIcon onClick={allCategories} />
                             </IconButton>
                         </Tooltip>
@@ -118,6 +128,24 @@ function News(props) {
                                 <FilterAltIcon />
                             </IconButton>
                         </Tooltip>
+                        <Menu sx={{ mt: '45px' }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{vertical: 'top',horizontal: 'right',}} keepMounted transformOrigin={{vertical: 'top', horizontal: 'right',}} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
+                        {(categ!="")
+                        ? filterCategories()
+                        : findCategories()}
+                        </Menu>
+                    </Box>
+                    <Box className={classes.hideMd} sx={{ flexGrow: 0 }}>
+                        {(categ)
+                        ?<Tooltip title="Kaikki kategoriat">
+                            <IconButton color="inherit" className={classes.filter}>
+                                <FilterAltOffIcon onClick={allCategories} />
+                            </IconButton>
+                        </Tooltip>
+                        : <Tooltip title="Valitse kategoria">
+                            <IconButton color="inherit" onClick={handleOpenUserMenu}>
+                                <FilterAltIcon />
+                            </IconButton>
+                        </Tooltip>}
                         <Menu sx={{ mt: '45px' }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{vertical: 'top',horizontal: 'right',}} keepMounted transformOrigin={{vertical: 'top', horizontal: 'right',}} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
                         {(categ!="")
                         ? filterCategories()
