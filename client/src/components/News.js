@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
 function News(props) {
     const classes = useStyles();
     const [news, setNews] = useState(props.news);
-    const [categories, setCategories] = React.useState();
     const [categ, setCateg] = React.useState("");
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const allCategories = () => {
@@ -51,7 +50,7 @@ function News(props) {
         let array = removeDuplicates(arr);
         let result = [];
         array.map((data) => (result.push(
-            <MenuItem key={data} onClick={() => handleCloseUserMenu(data)}>
+            <MenuItem key={data} onClick={() => handleSelectedContent(data)}>
                 <Typography textAlign="center">{toUppercase(data)}</Typography>
             </MenuItem> 
         )))
@@ -67,7 +66,7 @@ function News(props) {
         let array = removeDuplicates(arr);
         let result = [];
         array.map((data) => (result.push(
-            <MenuItem key={data} onClick={() => handleCloseUserMenu(data)}>
+            <MenuItem key={data} onClick={() => handleSelectedContent(data)}>
                 <Typography textAlign="center">{toUppercase(data)}</Typography>
             </MenuItem> 
         )))
@@ -91,9 +90,11 @@ function News(props) {
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
-    const handleCloseUserMenu = (category) => {
+    const handleCloseUserMenu = () => {
         setAnchorElUser(null);
-        console.log(category);
+    };
+    const handleSelectedContent = (category) => {
+        setAnchorElUser(null);
         setCateg(category);
     };
   return (
@@ -110,31 +111,12 @@ function News(props) {
                     <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>Tuoreimmat uutiset</Typography>
                     <Typography variant="button" noWrap component="div" sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex', md: 'none' } }}>covid-19-free</Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton onClick={allCategories}>
+                        <IconButton onClick={() =>window.location.reload()}>
                             <Avatar alt="covid" src={VirusIcon} sx={{ mr : 2 }} />
                         </IconButton>
                         <Typography variant="button" sx={{ flexGrow: 1 }}>covid-19-free</Typography>
                     </Box>
-                    <Box className={classes.hideSm} sx={{ flexGrow: 0 }}>
-                        {(categ)
-                        ?<Tooltip title="Kaikki kategoriat">
-                            <IconButton color="inherit" className={classes.filter}>
-                                <FilterAltOffIcon onClick={allCategories} />
-                            </IconButton>
-                        </Tooltip>
-                        : null }
-                        <Tooltip title="Valitse kategoria">
-                            <IconButton color="inherit" onClick={handleOpenUserMenu} sx={{ p: 0, mr: 2 }}>
-                                <FilterAltIcon />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu sx={{ mt: '45px' }} id="menu-appbar" anchorEl={anchorElUser} anchorOrigin={{vertical: 'top',horizontal: 'right',}} keepMounted transformOrigin={{vertical: 'top', horizontal: 'right',}} open={Boolean(anchorElUser)} onClose={handleCloseUserMenu}>
-                        {(categ!="")
-                        ? filterCategories()
-                        : findCategories()}
-                        </Menu>
-                    </Box>
-                    <Box className={classes.hideMd} sx={{ flexGrow: 0 }}>
+                    <Box sx={{ flexGrow: 0 }}>
                         {(categ)
                         ?<Tooltip title="Kaikki kategoriat">
                             <IconButton color="inherit" className={classes.filter}>
